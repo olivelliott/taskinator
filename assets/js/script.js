@@ -122,7 +122,6 @@ var completeEditTask = function(taskName, taskType, taskId) {
     document.querySelector("#save-task").textContent = "Add Task";
 };
 
-
 var deleteTask = function(taskId) {
     var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']" );
     taskSelected.remove();
@@ -156,6 +155,23 @@ var taskStatusChangeHandler = function(event) {
 var saveTasks = function () {
     localStorage.setItem("tasks",  JSON.stringify(tasks));
 }
+
+// Gets task items from localStorage.
+// Converts tasks from the string format back into an array of objects.
+// Iterates through a tasks array and creates task elements on the page from it.
+
+var loadTasks = function () {
+    var savedTasks = localStorage.getItem("tasks");
+    if (!savedTasks) {
+        return false;
+    } console.log("saved tasks found");
+    savedTasks = JSON.parse(savedTasks);
+    for (var i = 0; i < savedTasks.length; i ++) {
+        createTaskEl(savedTasks[i]);
+    }
+};
+
+loadTasks();
 
 formEl.addEventListener("submit", taskFormHandler);
 pageContentEl.addEventListener("click", taskButtonHandler);
