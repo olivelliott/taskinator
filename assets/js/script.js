@@ -33,6 +33,7 @@ var taskFormHandler = function(event) {
     createTaskEl(taskDataObj);
 };
 
+
 var createTaskEl = function (taskDataObj) {
     var listItemEl = document.createElement("li");
     listItemEl.className = "task-item";
